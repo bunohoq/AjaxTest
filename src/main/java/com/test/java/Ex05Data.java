@@ -10,31 +10,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.test.java.model.AjaxDAO;
-import com.test.java.model.SurveyDTO;
 
-@WebServlet(value = "/ex01.do")
-public class Ex01 extends HttpServlet {
+@WebServlet(value = "/ex05data.do")
+public class Ex05Data extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		//Ex01.java
-		//1. DB 작업 > select
-		AjaxDAO dao = new AjaxDAO();
-		SurveyDTO dto = dao.getSurvey(1);
+		//Ex05Data.java
 		
-		req.setAttribute("dto", dto);
-
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/ex01.jsp");
-		dispatcher.forward(req, resp);
+		String txt1 = req.getParameter("txt1");
+		
+		AjaxDAO dao = new AjaxDAO();
+		String name = dao.getInsa(txt1);
+		
+		resp.setCharacterEncoding("UTF-8");
+		resp.getWriter().print(name);
 	}
 
 }
-
-
-
-
-
-
-
-
